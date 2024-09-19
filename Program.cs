@@ -13,31 +13,34 @@ namespace Zadanie_7_7
 
             CheckData checkData = new CheckData();
 
-            int nummenu;
-
-            WriteLine($"Здравствуйте, это служба доставки FastDev. Какой способ доставки вы хотите использовать?" +
-                $"\n1. Доставка на дом\n2. Пункт выдачи\n3. Самовывоз из магазина\n");
-
-            do
-            {
-                Console.WriteLine("Ответ дайте цифрой");
-
-                if (int.TryParse(Console.ReadLine(), out nummenu))
-                {
-                    Console.WriteLine("Вы ввели число {0}", nummenu);
-                    break;
-                }
-            } while (checkData.CheckNum(nummenu));
-
-
-            switch (nummenu)
-
-
             devhome.Address = "Тверская улица, 3, Москва, 125009";
 
             Product cake = new Product("Торт", 850, 500);
 
-            devhome.CorrectAdressToHome(cake);
+            int nummenu=0;
+
+            WriteLine($"Здравствуйте, это служба доставки FastDev. Какой способ доставки вы хотите использовать?" +
+                $"\n1. Доставка на дом\n2. Пункт выдачи\n3. Самовывоз из магазина\n");
+           
+            do
+            {
+                Console.WriteLine("Ответ дайте числом");                                
+            } while (!int.TryParse(Console.ReadLine(), out nummenu)|| checkData.CheckNum(nummenu));
+
+            switch (nummenu)
+            {
+                case 1:
+                    WriteLine("Выбрана доставка на дом");
+                    devhome.CorrectAdressToHome(cake);
+                    break;
+                case 2:
+                    WriteLine("2");
+                    break;
+                case 3:
+                    WriteLine("3");
+                    break;              
+            }
+       
 
 
 
@@ -52,7 +55,11 @@ namespace Zadanie_7_7
 
                 if (age > 0 & age < 4)
                     return check = false;
-                else return check = true;
+                else
+                {
+                    Console.WriteLine("Число должно быть от 1 до 3");
+                    return check = true;
+                }
             }
         }
         abstract class Delivery
