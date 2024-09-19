@@ -74,6 +74,8 @@ namespace Zadanie_7_7
         {
             public string Address;
 
+            //public abstract void Send();
+
             public virtual void InfoDel()
             {
                 Console.WriteLine($"Адрес доставки выбран: {Address}\n");
