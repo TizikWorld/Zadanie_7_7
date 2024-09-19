@@ -19,9 +19,7 @@ namespace Zadanie_7_7
             Product cake = new Product("Торт", 850, 500);
 
             int nummenu=0;
-
-            WriteLine($"Здравствуйте, это служба доставки. Какой способ доставки вы хотите использовать?" +
-                $"\n1. Доставка на дом\n2. Пункт выдачи\n3. Самовывоз из магазина\n");
+            StartDev.Start();
            
             do
             {
@@ -35,22 +33,27 @@ namespace Zadanie_7_7
                     devhome.CorrectAdressToHome(cake);
                     break;
                 case 2:
-                    WriteLine("2");
-
+                    WriteLine("Выбрана доставка с помощью пункта выдачи");
+                    PickPointDelivery pickdelivery = new PickPointDelivery();
+                    pickdelivery.Address = "Москва, ТЦ Аврора";
+                    pickdelivery.InfoDel();
                     break;
                 case 3:
-                    WriteLine("3");
+                    WriteLine("Выбрана доставка из магазина");
                     ShopDelivery shopDelivery = new ShopDelivery();
                     shopDelivery.Shop();                    
                     break;              
-            }
-       
-
-
-
+            }       
         }
 
-
+        static class StartDev
+        {
+            static public void Start()
+            {
+                WriteLine($"Здравствуйте, это служба доставки. Какой способ доставки вы хотите использовать?" +
+                $"\n1. Доставка на дом\n2. Пункт выдачи\n3. Самовывоз из магазина\n");
+            }
+        }
 
         class CheckData
         {
@@ -70,6 +73,12 @@ namespace Zadanie_7_7
         abstract class Delivery
         {
             public string Address;
+
+            public virtual void InfoDel()
+            {
+                Console.WriteLine($"Адрес доставки выбран: {Address}\n");
+            }
+
 
             public void Confirmation()
             {
@@ -105,6 +114,12 @@ namespace Zadanie_7_7
 
         class PickPointDelivery : Delivery
         {
+
+            public override void InfoDel()
+            {
+                Console.WriteLine($"Адрес пункта выдачи: {Address}");
+            }
+
             /* ... */
         }
 
@@ -112,16 +127,11 @@ namespace Zadanie_7_7
         {
             /* ... */
             private protected string AdrShop = "Москва, Краснопресненская 19" ;
-            private int phone = 585858;
-
-            
+            private protected int phone = 585858;
         public void Shop()
             {
                 WriteLine($"Адрес магазина: {AdrShop} , номер телефона {phone}");
-            }
-            
-                
-
+            }                         
         }
 
         class Product
