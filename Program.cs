@@ -8,7 +8,8 @@ namespace Zadanie_7_7
     internal class Program
     {
         static void Main(string[] args)
-        {            
+        {
+
             HomeDelivery devhome = new HomeDelivery();
 
             CheckData checkData = new CheckData();
@@ -19,7 +20,7 @@ namespace Zadanie_7_7
 
             int nummenu=0;
 
-            WriteLine($"Здравствуйте, это служба доставки FastDev. Какой способ доставки вы хотите использовать?" +
+            WriteLine($"Здравствуйте, это служба доставки. Какой способ доставки вы хотите использовать?" +
                 $"\n1. Доставка на дом\n2. Пункт выдачи\n3. Самовывоз из магазина\n");
            
             do
@@ -35,9 +36,12 @@ namespace Zadanie_7_7
                     break;
                 case 2:
                     WriteLine("2");
+
                     break;
                 case 3:
                     WriteLine("3");
+                    ShopDelivery shopDelivery = new ShopDelivery();
+                    shopDelivery.Shop();                    
                     break;              
             }
        
@@ -45,6 +49,7 @@ namespace Zadanie_7_7
 
 
         }
+
 
 
         class CheckData
@@ -103,9 +108,20 @@ namespace Zadanie_7_7
             /* ... */
         }
 
-        class ShopDelivery : Delivery
+        private class ShopDelivery : Delivery
         {
             /* ... */
+            private protected string AdrShop = "Москва, Краснопресненская 19" ;
+            private int phone = 585858;
+
+            
+        public void Shop()
+            {
+                WriteLine($"Адрес магазина: {AdrShop} , номер телефона {phone}");
+            }
+            
+                
+
         }
 
         class Product
